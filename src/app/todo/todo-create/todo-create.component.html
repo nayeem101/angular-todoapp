@@ -1,0 +1,14 @@
+<div class="todo-create">
+  <form class="todo-form" (keydown.enter)="$event.preventDefault()">
+    <mat-form-field class="todo-input" appearance="outline">
+      <mat-label>Todo title</mat-label>
+      <input matInput [formControl]="title" />
+    </mat-form-field>
+    <div class="todo-btn-div">
+      <button (click)="onClick()" type="button" mat-flat-button color="primary">
+        <mat-icon class="mat-18">add</mat-icon>
+        {{ editingMode ? "Update" : "Add" }}
+      </button>
+    </div>
+  </form>
+</div>
