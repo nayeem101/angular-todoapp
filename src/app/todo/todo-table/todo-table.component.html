@@ -1,0 +1,72 @@
+<div>
+  <table
+    mat-table
+    class="mat-elevation-z2 todo-table"
+    [dataSource]="todoDataSource"
+  >
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td
+        mat-cell
+        *matCellDef="let todo"
+        (click)="openDialog(todo)"
+        [class.todo-expired]="isExpired(todo)"
+        style="cursor: pointer"
+      >
+        {{ todo.title | titlecase }}
+        {{ todo.isExpired }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef>Priority</th>
+      <td
+        mat-cell
+        *matCellDef="let todo"
+        [class.high-priority]="todo.priority === 'high'"
+        [class.medium-priority]="todo.priority === 'medium'"
+        [class.low-priority]="todo.priority === 'low'"
+      >
+        {{ todo.priority | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expiresIn">
+      <th mat-header-cell *matHeaderCellDef>Expires In</th>
+      <td mat-cell *matCellDef="let todo">
+        {{ todo.dateTime | date: "short" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let todo">
+        <button
+          mat-icon-button
+          color="accent"
+          title="edit"
+          (click)="openDialog(todo)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          title="delete"
+          (click)="onDelete(todo.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ filterValue }}"
+      </td>
+    </tr>
+  </table>
+</div>

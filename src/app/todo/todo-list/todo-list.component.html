@@ -3,46 +3,6 @@
 </h2>
 <mat-list role="list" *ngIf="todoItems.length !== 0">
   <mat-list-item role="listitem" *ngFor="let todo of todoItems">
-    <div class="todo-list">
-      <mat-checkbox
-        class="todo-isDone"
-        [checked]="todo.isDone"
-        (change)="onChecked($event, todo)"
-      >
-        <div
-          class="todo-title"
-          [ngClass]="{ isDone: todo.isDone }"
-          title="{{ todo.title }}"
-        >
-          {{ todo.title }}
-        </div>
-      </mat-checkbox>
-      <div class="todo-date">
-        <span>{{ todo.updatedAt ? "Updated: " : "Created: " }}</span>
-        {{
-          todo.updatedAt
-            ? (todo.updatedAt | date: "short")
-            : (todo.createdAt | date: "short")
-        }}
-      </div>
-      <div class="todo-actions">
-        <button
-          mat-flat-button
-          color="accent"
-          (click)="onEdit(todo)"
-          title="edit"
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button
-          mat-flat-button
-          color="warn"
-          (click)="onDelete(todo.id)"
-          title="delete"
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </div>
+    <app-todo-list-item [todo]="todo"></app-todo-list-item>
   </mat-list-item>
 </mat-list>

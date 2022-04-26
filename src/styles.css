@@ -7,6 +7,10 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #174d5ade;
-  color: white;
+  /* background-color: #174d5ade; */
+  /* color: white; */
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0 !important;
 }

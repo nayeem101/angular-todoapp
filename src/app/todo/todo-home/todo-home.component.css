@@ -1,0 +1,29 @@
+.card {
+  padding: 1.5rem 1rem;
+}
+
+.todo-search-add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 0 8px;
+}
+
+.todo-search-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-todo-form-field {
+  display: block;
+  width: 100%;
+}
+
+.todos-title {
+  font-size: 1.5rem;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-left: 12px;
+}

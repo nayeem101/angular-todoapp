@@ -1,0 +1,39 @@
+<mat-card class="mat-elevation-z8">
+  <div class="todo-search-add">
+    <div class="todo-search-form">
+      <mat-form-field class="search-todo-form-field" appearance="outline">
+        <mat-label>Search a todo</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="enter todo title"
+          [formControl]="searchControl"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <button
+        mat-icon-button
+        *ngIf="searchControl.value !== ''"
+        (click)="clearInput()"
+        matTooltip="Clear Input"
+      >
+        <mat-icon class="mat-18">close</mat-icon>
+      </button>
+    </div>
+    <button
+      class="todo-add-button"
+      color="primary"
+      mat-raised-button
+      (click)="openDialog()"
+    >
+      Add
+    </button>
+  </div>
+
+  <mat-card-content>
+    <div>
+      <h2 class="todos-title">Todos:</h2>
+    </div>
+    <app-todo-table [filterValue]="searchControl.value"></app-todo-table>
+  </mat-card-content>
+</mat-card>

@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Item } from '../interfaces/item';
+import { nanoid } from 'nanoid/async';
+import { from, map, Observable, of, Subject } from 'rxjs';
+import { Todo } from '../interfaces/todo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  todos: Item[] = [];
+  todos: Todo[] = [];
 
   constructor() {
     const todos = localStorage.getItem('todos');
     if (todos) this.todos = JSON.parse(todos);
   }
 
-  private getItem(id: number) {
+  private getItem(id: string) {
     return this.todos.find((todo) => todo.id === id);
   }
-  private getIndex(id: number) {
+  private getIndex(id: string) {
     return this.todos.findIndex((todo) => todo.id === id);
   }
 
@@ -24,34 +25,48 @@ export class TodoService {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
-  getTodos(): Observable<Item[]> {
+  //emit confirmed after todo created or updated
+  private todoCreatedSource = new Subject<boolean>();
+  todoCreated$ = this.todoCreatedSource.asObservable();
+  confirmTodoCreated(confirmed: boolean) {
+    this.todoCreatedSource.next(confirmed);
+  }
+
+  //emit confirmed after todo deleted
+  private todoDeletedSource = new Subject<boolean>();
+  todoDeleted$ = this.todoDeletedSource.asObservable();
+  confirmtodoDeleted(confirmed: boolean) {
+    this.todoDeletedSource.next(confirmed);
+  }
+
+  getTodos(): Observable<Todo[]> {
     return of(this.todos);
   }
 
-  getTodo(id: number): Observable<Item | null> {
+  getTodo(id: string): Observable<Todo | null> {
     const item = this.getItem(id);
     if (item) return of(item);
     else return of(null);
   }
 
-  createTodo(todo: Item): Observable<Item> {
+  async createTodo(todo: Todo): Promise<Observable<Todo>> {
     const newTodo = {
       ...todo,
-      id: this.todos.length + 1,
+      id: await nanoid(4),
     };
     this.todos.push(newTodo);
     this.updateLocalStorage();
     return of(newTodo);
   }
 
-  updateTodo(todo: Item): Observable<string> {
-    const index = this.getIndex(Number(todo.id));
+  updateTodo(todo: Todo): Observable<string> {
+    const index = this.getIndex(todo.id);
     this.todos.splice(index, 1, todo);
     this.updateLocalStorage();
     return of('Todo updated');
   }
 
-  deleteTodo(id: number): Observable<number> {
+  deleteTodo(id: string): Observable<string> {
     const index = this.getIndex(id);
     if (index !== -1) {
       this.todos.splice(index, 1);

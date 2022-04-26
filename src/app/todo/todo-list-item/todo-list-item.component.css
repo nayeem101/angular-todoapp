@@ -1,0 +1,44 @@
+.todo-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-expired {
+  text-decoration: line-through;
+  color: red;
+  border-left: 4px solid brown;
+}
+
+.todo-title {
+  font-size: 1.25rem;
+  width: 220px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.todo-date {
+  opacity: 0.7;
+  margin-left: 1rem;
+  font-size: 14px;
+}
+
+.todo-actions button {
+  padding: 0;
+  margin-left: 8px;
+  min-width: 50px;
+}
+
+.todo-low-priority {
+  color: yellowgreen;
+}
+.todo-medium-priority {
+  color: orange;
+  font-weight: 500;
+}
+.todo-high-priority {
+  color: red;
+  font-weight: 700;
+}

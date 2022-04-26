@@ -2,7 +2,15 @@
 
 ## This is a todo application made using angular. Data are stored in localstorage.
 
-### Live Site: [Netlify link]()
+### Live Site: [Netlify link](https://angular-todoapp-seven.vercel.app/)
+
+## Angular topics covered in this project
+
+1. Custom Module for todo related component
+2. LazyLoading todo module
+3. component to component data passing using service
+4. material table filter and custom table data styles
+5. material dialog custom service
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
@@ -29,3 +37,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+### made with 🧠 && ❤ by nayeem

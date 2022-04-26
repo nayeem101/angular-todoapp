@@ -1,0 +1,15 @@
+<div>
+  <div mat-dialog-title class="dialog-title">
+    <h2>Delete a todo</h2>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon class="mat-18">close</mat-icon>
+    </button>
+  </div>
+  <h3>{{ data.message }}</h3>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-flat-button color="primary" [mat-dialog-close]="true">
+      YES
+    </button>
+    <button mat-flat-button color="warn" [mat-dialog-close]="false">NO</button>
+  </div>
+</div>

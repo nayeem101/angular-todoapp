@@ -1,20 +1,11 @@
 <header>
-  <h1 class="mat-display-3 text-center" style="margin: 32px">Todoapp</h1>
+  <div class="app-title">
+    <img class="app-logo" src="../assets/note.png" alt="Todoapp" />
+    <h1 class="text-center">Todoapp</h1>
+  </div>
 </header>
 <main>
   <div class="container">
-    <mat-card class="card">
-      <mat-card-title>{{ title }}</mat-card-title>
-      <!-- render the create todo component -->
-      <app-todo-create
-        [toEdit]="editItem"
-        (editing)="isEditing($event)"
-      ></app-todo-create>
-      <mat-card-content>
-        <h3 class="mat-headline" style="margin: 0">Todos:</h3>
-        <!-- render the todo items -->
-        <app-todo-list (editItem)="onEditItem($event)"></app-todo-list>
-      </mat-card-content>
-    </mat-card>
+    <router-outlet></router-outlet>
   </div>
 </main>

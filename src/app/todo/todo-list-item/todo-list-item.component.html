@@ -1,0 +1,46 @@
+<div class="todo-list">
+  <div
+    class="todo-title"
+    title="{{ todo.title }}"
+    [class.todo-expired]="isExpired"
+    (click)="openDialog(todo)"
+  >
+    {{ todo.title }}
+  </div>
+
+  <div
+    [class.todo-low-priority]="todo.priority === 'low'"
+    [class.todo-medium-priority]="todo.priority === 'medium'"
+    [class.todo-high-priority]="todo.priority === 'high'"
+  >
+    Priority: {{ todo.priority }}
+  </div>
+  <div>Expires: {{ todo.dateTime | date: "short" }}</div>
+
+  <div class="todo-date">
+    <span>{{ todo.updatedAt ? "Updated: " : "Created: " }}</span>
+    {{
+      todo.updatedAt
+        ? (todo.updatedAt | date: "short")
+        : (todo.createdAt | date: "short")
+    }}
+  </div>
+  <div class="todo-actions">
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+      Action
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-icon-button color="accent" title="edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="onDelete(todo.id)"
+        title="delete"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-menu>
+  </div>
+</div>

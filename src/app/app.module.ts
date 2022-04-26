@@ -4,21 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
-import { TodoListComponent } from './todo/todo-list/todo-list.component';
-import { TodoCreateComponent } from './todo/todo-create/todo-create.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+import { SharedModule } from './shared/shared.module';
+import { CustomDialogService } from './shared/custom-dialog.service';
 
 @NgModule({
-  declarations: [AppComponent, TodoListComponent, TodoCreateComponent],
+  declarations: [AppComponent, NotFoundComponent, MatConfirmDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    ReactiveFormsModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [CustomDialogService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

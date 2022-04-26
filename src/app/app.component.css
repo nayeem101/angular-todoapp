@@ -8,6 +8,20 @@
   align-items: center;
 }
 
-.card {
-  width: 600px;
+.app-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+  margin: 8px 0;
+}
+.app-title h1 {
+  font-size: 3rem;
+  font-weight: 500;
+  color: teal;
+  margin-bottom: 0;
+}
+.app-logo {
+  width: 60px;
+  height: 60px;
 }
