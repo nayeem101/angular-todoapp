@@ -75,7 +75,7 @@ export class TodoCreateComponent implements OnInit {
       };
 
       (await this.todoService.createTodo(newTodo)).subscribe((item) => {
-        console.log(item);
+        // console.log(item);
         this.todoService.confirmTodoCreated(true);
         this.openSnackBar(`Todo Created`, 'Done');
       });

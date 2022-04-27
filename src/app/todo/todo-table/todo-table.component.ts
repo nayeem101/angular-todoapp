@@ -39,7 +39,7 @@ export class TodoTableComponent implements OnInit, OnChanges {
     private confirmDialog: CustomDialogService
   ) {
     this.todoService.todoCreated$.subscribe((confirmed) => {
-      console.log(confirmed);
+      // console.log(confirmed);
       if (confirmed) {
         this.table.renderRows();
       }

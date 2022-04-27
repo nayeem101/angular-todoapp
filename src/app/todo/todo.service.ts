@@ -10,7 +10,7 @@ export class TodoService {
   todos: Todo[] = [];
 
   constructor() {
-    const todos = localStorage.getItem('todos');
+    const todos = localStorage.getItem('ngtodos');
     if (todos) this.todos = JSON.parse(todos);
   }
 
@@ -22,7 +22,7 @@ export class TodoService {
   }
 
   private updateLocalStorage() {
-    localStorage.setItem('todos', JSON.stringify(this.todos));
+    localStorage.setItem('ngtodos', JSON.stringify(this.todos));
   }
 
   //emit confirmed after todo created or updated
