@@ -37,3 +37,9 @@
   color: #a158e6;
   font-weight: 400;
 }
+
+@media screen and (max-width: 600px) {
+  .todo-table {
+    width: auto;
+  }
+}
