@@ -71,7 +71,7 @@ export class TodoTableComponent implements OnInit, OnChanges {
       if (confirmed) {
         this.todoDataSource.filter = '';
         this.todoService.deleteTodo(id).subscribe((val) => {
-          console.log(val);
+          // console.log(val);
           this.todoService.confirmtodoDeleted(true);
           this.table.renderRows();
           this.openSnackBar(`Todo with ${val} deleted`, 'Okay');

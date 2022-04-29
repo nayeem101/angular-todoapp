@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { nanoid } from 'nanoid/async';
-import { from, map, Observable, of, Subject } from 'rxjs';
+import { nanoid } from 'nanoid';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { Todo } from '../interfaces/todo';
 
 @Injectable({
@@ -26,15 +26,19 @@ export class TodoService {
   }
 
   //emit confirmed after todo created or updated
-  private todoCreatedSource = new Subject<boolean>();
+  private todoCreatedSource = new BehaviorSubject<boolean>(false);
+  //Observable from source
   todoCreated$ = this.todoCreatedSource.asObservable();
+  //method to pass next value
   confirmTodoCreated(confirmed: boolean) {
     this.todoCreatedSource.next(confirmed);
   }
 
   //emit confirmed after todo deleted
-  private todoDeletedSource = new Subject<boolean>();
+  private todoDeletedSource = new BehaviorSubject<boolean>(false);
+  //Observable from source
   todoDeleted$ = this.todoDeletedSource.asObservable();
+  //method to pass next value
   confirmtodoDeleted(confirmed: boolean) {
     this.todoDeletedSource.next(confirmed);
   }
@@ -49,10 +53,10 @@ export class TodoService {
     else return of(null);
   }
 
-  async createTodo(todo: Todo): Promise<Observable<Todo>> {
+  createTodo(todo: Todo): Observable<Todo> {
     const newTodo = {
       ...todo,
-      id: await nanoid(4),
+      id: nanoid(4),
     };
     this.todos.push(newTodo);
     this.updateLocalStorage();
